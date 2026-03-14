@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Article - AhmadBlog{% endblock %}
+
+{% block content %}
+<section class="create-page">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="form-header">
+            <h1 class="form-title">Edit Article</h1>
+            <p class="form-subtitle">Update your article content</p>
+        </div>
+
+        <form action="{{ url_for('articles.edit', article_id=article.id) }}" method="POST" class="article-form">
+            <div class="form-group">
+                <label for="title">Article Title</label>
+                <input type="text" id="title" name="title" value="{{ article.title }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="excerpt">Excerpt</label>
+                <textarea id="excerpt" name="excerpt" rows="3" required>{{ article.excerpt }}</textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="apps" {% if article.category == 'apps' %}selected{% endif %}>Apps</option>
+                        <option value="art" {% if article.category == 'art' %}selected{% endif %}>Art</option>
+                        <option value="books" {% if article.category == 'books' %}selected{% endif %}>Books</option>
+                        <option value="health" {% if article.category == 'health' %}selected{% endif %}>Health</option>
+                        <option value="history" {% if article.category == 'history' %}selected{% endif %}>History</option>
+                        <option value="movies" {% if article.category == 'movies' %}selected{% endif %}>Movies</option>
+                        <option value="travel" {% if article.category == 'travel' %}selected{% endif %}>Travel</option>
+                        <option value="web" {% if article.category == 'web' %}selected{% endif %}>Web</option>
+                        <option value="other" {% if article.category == 'other' %}selected{% endif %}>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="read_time">Read Time</label>
+                    <input type="text" id="read_time" name="read_time" value="{{ article.read_time }}" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author Name</label>
+                <input type="text" id="author" name="author" value="{{ article.author }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="image_url">Image URL</label>
+                <input type="url" id="image_url" name="image_url" value="{{ article.image }}">
+            </div>
+
+            <div class="form-group">
+                <label for="content">Article Content</label>
+                <textarea id="content" name="content" rows="15" required>{{ article.content }}</textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Update Article
+                </button>
+                <a href="{{ url_for('articles.view', article_id=article.id) }}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
