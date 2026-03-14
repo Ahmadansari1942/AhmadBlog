@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Create Article - AhmadBlog{% endblock %}
+
+{% block content %}
+<section class="create-page">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="form-header">
+            <h1 class="form-title">Create New Article</h1>
+            <p class="form-subtitle">Share your knowledge with the world</p>
+        </div>
+
+        <form action="{{ url_for('articles.create') }}" method="POST" class="article-form">
+            <div class="form-group">
+                <label for="title">Article Title</label>
+                <input type="text" id="title" name="title" required placeholder="Enter a compelling title...">
+            </div>
+
+            <div class="form-group">
+                <label for="excerpt">Excerpt</label>
+                <textarea id="excerpt" name="excerpt" rows="3" required placeholder="Brief summary of your article..."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="apps">Apps</option>
+                        <option value="art">Art</option>
+                        <option value="books">Books</option>
+                        <option value="health">Health</option>
+                        <option value="history">History</option>
+                        <option value="movies">Movies</option>
+                        <option value="travel">Travel</option>
+                        <option value="web">Web</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="read_time">Read Time</label>
+                    <input type="text" id="read_time" name="read_time" placeholder="e.g., 5 min read" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author Name</label>
+                <input type="text" id="author" name="author" required placeholder="Your name...">
+            </div>
+
+            <div class="form-group">
+                <label for="image_url">Image URL</label>
+                <input type="url" id="image_url" name="image_url" placeholder="https://example.com/image.jpg">
+                <span class="form-hint">Leave empty for default image</span>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Article Content</label>
+                <textarea id="content" name="content" rows="15" required placeholder="Write your article content here..."></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Publish Article
+                </button>
+                <a href="{{ url_for('main.index') }}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
