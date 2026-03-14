@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - AhmadBlog{% endblock %}
+
+{% block content %}
+<section class="about-page">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="about-header">
+            <h1 class="page-title">About AhmadBlog</h1>
+            <p class="page-subtitle">Your Gateway to Knowledge and Inspiration</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-section">
+                <h2>Our Mission</h2>
+                <p>At AhmadBlog, we believe knowledge should be accessible to everyone. Our platform brings together passionate writers and curious readers from around the world to share insights, stories, and expertise across diverse topics.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>What We Cover</h2>
+                <div class="category-list">
+                    <div class="category-item cat-apps">Apps & Technology</div>
+                    <div class="category-item cat-art">Art & Design</div>
+                    <div class="category-item cat-books">Books & Literature</div>
+                    <div class="category-item cat-health">Health & Wellness</div>
+                    <div class="category-item cat-history">History</div>
+                    <div class="category-item cat-movies">Movies & Cinema</div>
+                    <div class="category-item cat-travel">Travel</div>
+                    <div class="category-item cat-web">Web Development</div>
+                    <div class="category-item cat-other">And More</div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>Join Our Community</h2>
+                <p>Whether you're here to learn, share, or explore, AhmadBlog welcomes you. Start by reading articles that interest you, and when you're ready, contribute your own unique perspective to our growing collection.</p>
+                <a href="{{ url_for('articles.create') }}" class="btn-primary">Start Writing</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
