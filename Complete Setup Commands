@@ -1,0 +1,30 @@
+# Create all directories
+mkdir -p AhmadBlog/{models,routes,templates,static/{css,js,images,uploads},data,utils,tests,screenshots}
+
+# Navigate to project
+cd AhmadBlog
+
+# Create all files (copy from above)
+
+# Setup virtual environment
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# OR
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the app
+python run.py
+
+# Run tests
+pytest tests/ -v
+
+# Deploy to GitHub
+git init
+git add .
+git commit -m "Initial commit - AhmadBlog by Ahmad Ansari"
+git branch -M main
+git remote add origin https://github.com/ahmadansari/AhmadBlog.git
+git push -u origin main
