@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% block title %}AhmadBlog - Discover Amazing Stories{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Discover Knowledge
+        </div>
+        <h1 class="hero-title">
+            <span class="hero-title-gradient">Explore Ideas That Inspire</span>
+        </h1>
+        <p class="hero-subtitle">
+            Dive into a world of insightful articles covering technology, creativity, lifestyle, and beyond.
+        </p>
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-count="{{ articles|length }}">0</div>
+                <div class="stat-label">Articles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="9">0</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="20">0</div>
+                <div class="stat-label">Authors</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filters Section -->
+<section class="filters-section">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="filters-container" id="filtersContainer">
+            <a href="{{ url_for('main.index') }}" class="filter-btn filter-all active">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                </svg>
+                All
+            </a>
+            <a href="{{ url_for('articles.category', category='apps') }}" class="filter-btn filter-apps">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+                    <rect x="9" y="9" width="6" height="6"/>
+                </svg>
+                Apps
+            </a>
+            <a href="{{ url_for('articles.category', category='art') }}" class="filter-btn filter-art">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="13.5" cy="6.5" r="2.5"/>
+                    <path d="M17 6h4"/>
+                </svg>
+                Art
+            </a>
+            <a href="{{ url_for('articles.category', category='books') }}" class="filter-btn filter-books">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+                Books
+            </a>
+            <a href="{{ url_for('articles.category', category='health') }}" class="filter-btn filter-health">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+                Health
+            </a>
+            <a href="{{ url_for('articles.category', category='history') }}" class="filter-btn filter-history">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                History
+            </a>
+            <a href="{{ url_for('articles.category', category='movies') }}" class="filter-btn filter-movies">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <line x1="17" y1="2" x2="17" y2="22"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                </svg>
+                Movies
+            </a>
+            <a href="{{ url_for('articles.category', category='travel') }}" class="filter-btn filter-travel">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                Travel
+            </a>
+            <a href="{{ url_for('articles.category', category='web') }}" class="filter-btn filter-web">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                </svg>
+                Web
+            </a>
+            <a href="{{ url_for('articles.category', category='other') }}" class="filter-btn filter-other">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="1"/>
+                    <circle cx="19" cy="12" r="1"/>
+                    <circle cx="5" cy="12" r="1"/>
+                </svg>
+                Other
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Article -->
+{% if featured %}
+<section class="featured-section">
+    <div class="max-w-7xl mx-auto px-6">
+        <a href="{{ url_for('articles.view', article_id=featured.id) }}" class="featured-card card-reveal">
+            <div class="featured-image">
+                <img src="{{ featured.image }}" alt="{{ featured.title }}">
+            </div>
+            <div class="featured-content">
+                <span class="featured-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    Featured
+                </span>
+                <h2 class="featured-title">{{ featured.title }}</h2>
+                <p class="featured-excerpt">{{ featured.excerpt }}</p>
+                <div class="card-meta">
+                    <div class="card-author">
+                        <div class="author-avatar">{{ featured.author.split()[0][0] }}{{ featured.author.split()[1][0] if featured.author.split()|length > 1 else '' }}</div>
+                        <div class="author-info">
+                            <span class="author-name">{{ featured.author }}</span>
+                            <span class="author-date">{{ featured.date }}</span>
+                        </div>
+                    </div>
+                    <div class="read-time">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        {{ featured.read_time }}
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+{% endif %}
+
+<!-- Blog Grid -->
+<section class="blog-section">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="blog-grid">
+            {% for article in articles %}
+                {% if not article.featured %}
+                <article class="blog-card card-reveal">
+                    <a href="{{ url_for('articles.view', article_id=article.id) }}">
+                        <div class="card-image">
+                            <img src="{{ article.image }}" alt="{{ article.title }}">
+                            <span class="card-category cat-{{ article.category }}">
+                                {{ article.category }}
+                            </span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">{{ article.title }}</h3>
+                            <p class="card-excerpt">{{ article.excerpt }}</p>
+                            <div class="card-meta">
+                                <div class="card-author">
+                                    <div class="author-avatar">{{ article.author.split()[0][0] }}{{ article.author.split()[1][0] if article.author.split()|length > 1 else '' }}</div>
+                                    <div class="author-info">
+                                        <span class="author-name">{{ article.author }}</span>
+                                        <span class="author-date">{{ article.date }}</span>
+                                    </div>
+                                </div>
+                                <div class="read-time">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12 6 12 12 16 14"/>
+                                    </svg>
+                                    {{ article.read_time }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Animate counters
+    document.querySelectorAll('.stat-number').forEach(counter => {
+        const target = parseInt(counter.dataset.count);
+        let current = 0;
+        const step = target / 60;
+        
+        const update = () => {
+            current += step;
+            if (current < target) {
+                counter.textContent = Math.floor(current);
+                requestAnimationFrame(update);
+            } else {
+                counter.textContent = target;
+            }
+        };
+        update();
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-reveal').forEach(el => observer.observe(el));
+</script>
+{% endblock %}
