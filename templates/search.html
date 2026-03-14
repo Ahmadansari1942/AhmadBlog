@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - AhmadBlog{% endblock %}
+
+{% block content %}
+<section class="search-page">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="search-header">
+            <h1 class="page-title">Search Results</h1>
+            <p class="search-query">Results for: "{{ query }}"</p>
+            <p class="search-count">{{ results|length }} articles found</p>
+        </div>
+
+        {% if results %}
+        <div class="blog-grid">
+            {% for article in results %}
+            <article class="blog-card card-reveal">
+                <a href="{{ url_for('articles.view', article_id=article.id) }}">
+                    <div class="card-image">
+                        <img src="{{ article.image }}" alt="{{ article.title }}">
+                        <span class="card-category cat-{{ article.category }}">
+                            {{ article.category }}
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">{{ article.title }}</h3>
+                        <p class="card-excerpt">{{ article.excerpt }}</p>
+                        <div class="card-meta">
+                            <div class="card-author">
+                                <div class="author-avatar">{{ article.author.split()[0][0] }}{{ article.author.split()[1][0] if article.author.split()|length > 1 else '' }}</div>
+                                <div class="author-info">
+                                    <span class="author-name">{{ article.author }}</span>
+                                    <span class="author-date">{{ article.date }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-results">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <h2>No Results Found</h2>
+            <p>Try different keywords or browse our categories</p>
+            <a href="{{ url_for('main.index') }}" class="btn-primary">Browse All Articles</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
